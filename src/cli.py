@@ -16,6 +16,7 @@ from analyzer.permissions_checker import PermissionsChecker
 from analyzer.image_scanner import ImageScanner
 from analyzer.dependency_scanner import DependencyScanner
 from analyzer.terraform_scanner import TerraformScanner
+from report.generator import ReportGenerator
 
 
 def print_banner():
@@ -103,6 +104,7 @@ def main():
     parser = argparse.ArgumentParser(description="SecurePipeline Audit Tool")
     parser.add_argument("--repo", required=True, help="Caminho para o repositório")
     parser.add_argument("--json", action="store_true", help="Output em JSON")
+    parser.add_argument("--pdf", type=str, help="Gera relatório PDF no caminho indicado")  # ← aqui
     args = parser.parse_args()
 
     results = run_scan(args.repo)
@@ -111,6 +113,13 @@ def main():
         print(json.dumps(results, indent=2))
     else:
         print_results(results)
+
+    
+    if args.pdf:
+        print(f"\n[*] A gerar relatório PDF...")
+        generator = ReportGenerator()
+        pdf_path = generator.generate(results, args.pdf)
+        print(f"[+] Relatório guardado em: {pdf_path}\n")
 
     if results["summary"]["CRITICAL"] > 0:
         sys.exit(2)
