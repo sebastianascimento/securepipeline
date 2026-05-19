@@ -14,6 +14,8 @@ from pathlib import Path
 from analyzer.secrets_scanner import SecretsScanner
 from analyzer.permissions_checker import PermissionsChecker
 from analyzer.image_scanner import ImageScanner
+from analyzer.dependency_scanner import DependencyScanner
+from analyzer.terraform_scanner import TerraformScanner
 
 
 def print_banner():
@@ -43,6 +45,8 @@ def run_scan(repo_path: str) -> dict:
         SecretsScanner(path),
         PermissionsChecker(path),
         ImageScanner(path),
+        DependencyScanner(path),
+        TerraformScanner(path)
     ]
 
     for scanner in scanners:
