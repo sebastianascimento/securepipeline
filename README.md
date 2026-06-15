@@ -52,12 +52,6 @@ python cli.py --repo ./tests/ --json
 
 ---
 
-## 📊 Exemplo de output
-
-O relatório PDF gerado tem o mesmo conteúdo num formato profissional de auditoria — capa, sumário executivo com contagem por severidade, e detalhe de cada finding com remediação sugerida.
-
----
-
 ## ⚙️ Exit codes (integração CI/CD)
 
 | Código | Significado |
