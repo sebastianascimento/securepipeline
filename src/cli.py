@@ -17,6 +17,7 @@ from analyzer.image_scanner import ImageScanner
 from analyzer.dependency_scanner import DependencyScanner
 from analyzer.terraform_scanner import TerraformScanner
 from report.generator import ReportGenerator
+from analyzer.keyvault_scanner import KeyVaultScanner
 
 
 def print_banner():
@@ -47,7 +48,8 @@ def run_scan(repo_path: str) -> dict:
         PermissionsChecker(path),
         ImageScanner(path),
         DependencyScanner(path),
-        TerraformScanner(path)
+        TerraformScanner(path),
+        KeyVaultScanner(path)
     ]
 
     for scanner in scanners:

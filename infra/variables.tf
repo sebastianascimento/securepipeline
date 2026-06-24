@@ -9,7 +9,7 @@ variable "resource_group_name" {
 variable "location" {
   description = "Região Azure"
   type        = string
-  default     = "westeurope"
+  default     = "francecentral"
 }
 
 variable "acr_name" {
